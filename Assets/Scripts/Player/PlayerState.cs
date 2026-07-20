@@ -5,41 +5,31 @@ using UnityEngine;
 public class PlayerState
 {
     protected Player player;
-    protected PlayerStateMachine stateMachine;
-    private string animBoolName;
-    protected Rigidbody2D rb;
-    protected float stateTimer;
-    protected bool isTriggerCalled;
-    protected Vector2 playerGravity;
-    protected float xInput;
-    protected float yInput;
-    protected UserInputManager userInput;
+    protected StateMachine stateMachine;
+    protected string stateName;
 
-    public PlayerState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName)
+    public PlayerState(Player player, StateMachine stateMachine, string stateName)
     {
-        this.player = _player;
-        this.stateMachine = _stateMachine;
-        this.animBoolName = _animBoolName;
+        this.player = player;
+        this.stateMachine = stateMachine;
+        this.stateName = stateName;
     }
 
     public virtual void Enter()
     {
-        player.animator.SetBool(animBoolName, true);
-        rb = player.rb;
-        playerGravity = new Vector2(0, -Physics2D.gravity.y);
-        isTriggerCalled = false;
-        userInput = UserInputManager.instance;
+        // Code to execute when entering the state
+        Debug.Log($"Entering state: {stateName}");
     }
 
     public virtual void Update()
     {
-        stateTimer -= Time.deltaTime;
-
-        xInput = userInput.horizontalMovement().x;
-
-        player.animator.SetFloat("yVelocity", rb.velocity.y);
+        // Code to execute every frame while in the state
+        Debug.Log($"Updating state: {stateName}");
     }
 
-    public virtual void Exit() => player.animator.SetBool(animBoolName, false);
-    public virtual void animationFinishTrigger() => isTriggerCalled = true;
+    public virtual void Exit()
+    {
+        // Code to execute when exiting the state
+        Debug.Log($"Exiting state: {stateName}");
+    }
 }

@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpAscendState : PlayerState
+public class OldPlayerJumpAscendState : OldPlayerState
 {
-    public PlayerJumpAscendState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public OldPlayerJumpAscendState(OldPlayer _player, OldPlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        player.setVelocity(rb.velocity.x, player.jumpForce);
+        player.setVelocity(rb.linearVelocity.x, player.jumpForce);
     }
 
     public override void Exit()
@@ -26,16 +26,16 @@ public class PlayerJumpAscendState : PlayerState
         // Do aerial movement
         if (xInput != 0)
         {
-            player.setVelocity(xInput * player.aerialMovementSpeed, rb.velocity.y);
+            player.setVelocity(xInput * player.aerialMovementSpeed, rb.linearVelocity.y);
             player.Flip(xInput);
         }
 
         // If jump button is released, it will not jump higher
-        if (userInput.playerJump.WasReleasedThisFrame() && rb.velocity.y > 0f)
-            player.setVelocity(rb.velocity.x, rb.velocity.y * 0.5f);
+        if (userInput.playerJump.WasReleasedThisFrame() && rb.linearVelocity.y > 0f)
+            player.setVelocity(rb.linearVelocity.x, rb.linearVelocity.y * 0.5f);
 
         // Transition to descend state
-        if (rb.velocity.y < 0)
+        if (rb.linearVelocity.y < 0)
             stateMachine.ChangeState(player.jumpDescendState);
     }
 }

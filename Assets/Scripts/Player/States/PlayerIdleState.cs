@@ -1,29 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdleState : PlayerGroundedState
+public class PlayerIdleState : PlayerState
 {
-    public PlayerIdleState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerIdleState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
+        
     }
 
     public override void Enter()
     {
         base.Enter();
-        player.setVelocityToZero();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
+        // Additional code for entering the idle state
     }
 
     public override void Update()
     {
         base.Update();
-
-        if (xInput != 0 && !player.isBusy)
+        if (player.moveInput.x != 0)
             stateMachine.ChangeState(player.moveState);
+        // Additional code for updating the idle state
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        // Additional code for exiting the idle state
     }
 }

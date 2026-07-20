@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationTrigger : MonoBehaviour
+public class OldAnimationTrigger : MonoBehaviour
 {
-    private Player player => GetComponentInParent<Player>();
+    private OldPlayer player => GetComponentInParent<OldPlayer>();
 
-    public void animationTrigger() => player.animationTrigger();
+    public void oldAnimationTrigger() => player.oldAnimationTrigger();
 
     public void attackTrigger()
     {

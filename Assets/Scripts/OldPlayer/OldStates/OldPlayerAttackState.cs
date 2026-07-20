@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttackState : PlayerGroundedState
+public class OldPlayerAttackState : OldPlayerGroundedState
 {
     private int comboCounter;
     private float lastTimeAttacked;
     private float comboWindows = 2f;
 
-    public PlayerAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public OldPlayerAttackState(OldPlayer _player, OldPlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 

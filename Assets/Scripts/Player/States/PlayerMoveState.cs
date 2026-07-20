@@ -1,33 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMoveState : PlayerGroundedState
+public class PlayerMoveState : PlayerState
 {
-    public PlayerMoveState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerMoveState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
+        
     }
 
     public override void Enter()
     {
         base.Enter();
-        player.setVelocity(xInput * player.moveSpeed, rb.velocity.y);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
+        Debug.Log($"Im in {stateName}");
+        // Additional code for entering the move state
     }
 
     public override void Update()
     {
         base.Update();
-
-        player.setVelocity(xInput * player.moveSpeed, rb.velocity.y);
-
-        player.Flip(xInput);
-
-        if(xInput == 0)
+        // Additional code for updating the move state
+        if (player.moveInput.x == 0)
             stateMachine.ChangeState(player.idleState);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        // Additional code for exiting the move state
     }
 }

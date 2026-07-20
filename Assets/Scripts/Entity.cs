@@ -30,8 +30,8 @@ public class Entity : MonoBehaviour
 
     }
 
-    public void setVelocity(float _xVelocity, float _yVelocity) => rb.velocity = new Vector2(_xVelocity, _yVelocity);
-    public void setVelocityToZero() => rb.velocity = Vector2.zero;
+    public void setVelocity(float _xVelocity, float _yVelocity) => rb.linearVelocity = new Vector2(_xVelocity, _yVelocity);
+    public void setVelocityToZero() => rb.linearVelocity = Vector2.zero;
     public void Flip(float _movingDir)
     {
         if (isFacingRight && _movingDir < 0f || !isFacingRight && _movingDir > 0f)
