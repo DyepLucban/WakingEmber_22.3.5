@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerMoveState : PlayerState
+public class PlayerMoveState : PlayerGroundedState
 {
-    public PlayerMoveState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
+    public PlayerMoveState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
         
     }
@@ -10,21 +10,27 @@ public class PlayerMoveState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log($"Im in {stateName}");
+        Debug.Log($"Im in {animBoolName}");
         // Additional code for entering the move state
     }
 
     public override void Update()
     {
         base.Update();
-        // Additional code for updating the move state
+
+        player.setVelocity(player.moveInput.x * player.movementSpeed, rb.linearVelocity.y);
+
+        // Player stops moving, change to idle state
         if (player.moveInput.x == 0)
             stateMachine.ChangeState(player.idleState);
+
+        // // Player jumps while moving
+        // if (inputControl.Player.Jump.WasPressedThisFrame() && player.isGrounded())
+        //     stateMachine.ChangeState(player.jumpAscendState);
     }
 
     public override void Exit()
     {
         base.Exit();
-        // Additional code for exiting the move state
     }
 }

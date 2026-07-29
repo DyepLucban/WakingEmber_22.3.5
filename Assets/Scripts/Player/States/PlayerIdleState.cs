@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerIdleState : PlayerState
+public class PlayerIdleState : PlayerGroundedState
 {
     public PlayerIdleState(Player player, StateMachine stateMachine, string stateName) : base(player, stateMachine, stateName)
     {
@@ -16,9 +16,13 @@ public class PlayerIdleState : PlayerState
     public override void Update()
     {
         base.Update();
+
         if (player.moveInput.x != 0)
             stateMachine.ChangeState(player.moveState);
-        // Additional code for updating the idle state
+
+        // {
+        //     rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * player.jumpForce);
+        // }
     }
 
     public override void Exit()

@@ -6,30 +6,35 @@ public class PlayerState
 {
     protected Player player;
     protected StateMachine stateMachine;
-    protected string stateName;
+    protected string animBoolName;
+    protected Animator anim;
+    protected Rigidbody2D rb;
+    protected PlayerInputControl inputControl;
 
-    public PlayerState(Player player, StateMachine stateMachine, string stateName)
+    public PlayerState(Player player, StateMachine stateMachine, string animBoolName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
-        this.stateName = stateName;
+        this.animBoolName = animBoolName;
+        anim = player.anim;
+        rb = player.rb;
+        inputControl = player.inputControl;
     }
 
     public virtual void Enter()
     {
         // Code to execute when entering the state
-        Debug.Log($"Entering state: {stateName}");
+        anim.SetBool(animBoolName, true);
     }
 
     public virtual void Update()
     {
         // Code to execute every frame while in the state
-        Debug.Log($"Updating state: {stateName}");
     }
 
     public virtual void Exit()
     {
         // Code to execute when exiting the state
-        Debug.Log($"Exiting state: {stateName}");
+        anim.SetBool(animBoolName, false);
     }
 }
