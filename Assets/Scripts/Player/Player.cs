@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         stateMachine = new StateMachine();
-        inputControl = new PlayerInputControl();
+        inputControl = new PlayerInputControl();  
 
         idleState = new PlayerIdleState(this, stateMachine, "IdleState");
         moveState = new PlayerMoveState(this, stateMachine, "moveState");
