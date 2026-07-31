@@ -605,6 +605,8 @@ MonoBehaviour:
   movementSpeed: 6
   jumpForce: 9
   aerialMovement: 5
+  coyoteTime: 0.2
+  coyoteTimeCounter: 0
   groundChecker: {fileID: 868786108}
   groundCheckerSize: {x: 0.5, y: 0.15}
   groundLayer:
@@ -852,7 +854,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 573403335, guid: 199005e828672e942910f5bcc6e40d15, type: 3}
+  m_Sprite: {fileID: -715291505, guid: 199005e828672e942910f5bcc6e40d15, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -24,9 +24,13 @@ public class PlayerMoveState : PlayerGroundedState
         if (player.moveInput.x == 0)
             stateMachine.ChangeState(player.idleState);
 
-        // // Player jumps while moving
-        // if (inputControl.Player.Jump.WasPressedThisFrame() && player.isGrounded())
-        //     stateMachine.ChangeState(player.jumpAscendState);
+        // Coyote Time
+        if (player.isGrounded())
+            player.coyoteTimeCounter = player.coyoteTime;
+        else if (!player.isGrounded() && player.coyoteTimeCounter > 0f)
+            player.coyoteTimeCounter -= Time.deltaTime;
+        else
+            stateMachine.ChangeState(player.jumpDescendState);
     }
 
     public override void Exit()

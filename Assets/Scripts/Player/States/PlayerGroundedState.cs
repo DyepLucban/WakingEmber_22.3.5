@@ -17,8 +17,17 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        if (inputControl.Player.Jump.WasPressedThisFrame() && player.isGrounded())
+        // Jump
+        if (inputControl.Player.Jump.WasPressedThisFrame() && player.coyoteTimeCounter > 0f)
             stateMachine.ChangeState(player.jumpAscendState);
+
+        // Coyote Time
+        if (player.isGrounded())
+            player.coyoteTimeCounter = player.coyoteTime;
+        else if (!player.isGrounded() && player.coyoteTimeCounter > 0f)
+            player.coyoteTimeCounter -= Time.deltaTime;
+        else
+            stateMachine.ChangeState(player.jumpDescendState);
     }
 
     public override void Exit()

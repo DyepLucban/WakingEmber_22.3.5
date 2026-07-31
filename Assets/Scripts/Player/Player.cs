@@ -18,15 +18,18 @@ public class Player : MonoBehaviour
 
     #region Movement Variables
     [Header("Movement Variables")]
-    public Vector2 moveInput { get; private set; }
     public bool isJumpPressed;
     public bool isFacingRight = true;
+    public Vector2 moveInput { get; private set; }
     [SerializeField] public float movementSpeed;
     [SerializeField] public float jumpForce;
     [SerializeField] public float aerialMovement;
+    [SerializeField] public float coyoteTime;
+    [SerializeField] public float coyoteTimeCounter;
     #endregion
 
     #region Collision Detections
+    [Header("Collision Detection")]
     [SerializeField] public Transform groundChecker;
     [SerializeField] public Vector2 groundCheckerSize;
     [SerializeField] LayerMask groundLayer;
@@ -74,6 +77,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.currentState.Update();
+ 
+        coyoteTimeCounter -= Time.deltaTime;
     }
 
     public bool isGrounded() => Physics2D.OverlapBox(groundChecker.position, groundCheckerSize, 0, groundLayer);

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerJumpAscendState : PlayerState
+public class PlayerJumpAscendState : PlayerAiredState
 {
     public PlayerJumpAscendState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName) {}
 
@@ -17,13 +17,6 @@ public class PlayerJumpAscendState : PlayerState
 
         if (rb.linearVelocity.y < 0)
             stateMachine.ChangeState(player.jumpDescendState);
-
-        // Player can move while in the air
-        if (player.moveInput.x != 0)
-        {
-            player.setVelocity(player.moveInput.x * player.aerialMovement, rb.linearVelocity.y);
-            player.handleFlip(player.moveInput.x);
-        }
     }
 
     public override void Exit()
